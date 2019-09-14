@@ -30,4 +30,9 @@ build/
 .idea/
 out/
 *.swp
+*.iml
+
+# General
+*.bak
+
 
