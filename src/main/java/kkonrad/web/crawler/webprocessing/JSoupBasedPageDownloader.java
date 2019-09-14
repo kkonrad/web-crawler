@@ -10,7 +10,8 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static kkonrad.web.crawler.utils.CollectionsUtils.joinLists;
 
 // Other implementation could render page with JS. Selenium could be used for this
 // Extracting links code is from jsoup official documentation
@@ -57,8 +58,4 @@ public class JSoupBasedPageDownloader implements PageDownloader {
                 .collect(Collectors.toList());
     }
 
-    private static <T> List<T> joinLists(List<T> list1, List<T> list2) {
-        return Stream.concat(list1.stream(), list2.stream())
-                .collect(Collectors.toList());
-    }
 }
