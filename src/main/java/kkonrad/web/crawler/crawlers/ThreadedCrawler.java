@@ -12,11 +12,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Phaser;
 
 /**
- * Quite ugly, but done to quickly see how it would play out if we were to assume that any
- * CrawlingOrchestrator or PageScraper class can be used.
- * Should be simpler and more efficient if there were dedicated Orchestrator for this
- * <p>
- * Objects of this class are not thread safe (because assumption of orchestrator being field).
+ * Given more time this class could be refactored so that instances of if are re-usable
+ * (or this code is the one that provides re-usability for higher layer).
+ *
+ * Now it is "ugly" as its objects can be used only once although interface might suggest something different
  */
 public class ThreadedCrawler implements Crawler {
 
