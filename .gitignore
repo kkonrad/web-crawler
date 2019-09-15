@@ -35,4 +35,7 @@ out/
 # General
 *.bak
 
+# App specyfic
+crawled_pages.out
+site_map.out
 

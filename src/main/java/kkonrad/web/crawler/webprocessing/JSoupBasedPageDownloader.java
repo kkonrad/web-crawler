@@ -5,6 +5,7 @@ import kkonrad.web.crawler.core.PageDownloader;
 import kkonrad.web.crawler.core.WebPage;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
+import org.jsoup.UnsupportedMimeTypeException;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
@@ -23,15 +24,18 @@ public class JSoupBasedPageDownloader implements PageDownloader {
         log.info("Downloading page at {}", nextUrl);
         try {
             Document document = Jsoup.connect(nextUrl).get();
-            return buildWebPage(document);
+            return buildWebPage(nextUrl, document);
+        } catch (UnsupportedMimeTypeException ex) {
+            log.warn("Failed to parse page at {} due to MIME type {}", nextUrl, ex.getMimeType());
         } catch (IOException ex) {
             log.error("Failed to download page at {}", nextUrl, ex);
-            return WebPage.emptyWebPage();
         }
+        return WebPage.emptyWebPage(nextUrl);
     }
 
-    private WebPage buildWebPage(Document document) {
+    private WebPage buildWebPage(String url, Document document) {
         return WebPage.builder()
+                .url(url)
                 .links(getLinks(document))
                 .others(getOtherLinks(document))
                 .build();
