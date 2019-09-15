@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -93,10 +94,10 @@ public class Application {
 
         String strCrawledPages = strCrawledPages(simplifiedMap.keySet());
         System.out.println(strCrawledPages);
-        Files.write(Paths.get(CRAWLED_PAGES_OUT_FILE), strCrawledPages.getBytes());
+        Files.write(Paths.get(CRAWLED_PAGES_OUT_FILE), strCrawledPages.getBytes(Charset.defaultCharset()));
 
         String strSiteMap = strSiteMap(simplifiedMap);
-        Files.write(Paths.get(SITE_MAP_OUT_FILE), strSiteMap.getBytes());
+        Files.write(Paths.get(SITE_MAP_OUT_FILE), strSiteMap.getBytes(Charset.defaultCharset()));
     }
 
     private static String strCrawledPages(Collection<String> crawledPages) {

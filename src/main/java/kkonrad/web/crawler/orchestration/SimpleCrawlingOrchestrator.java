@@ -4,16 +4,12 @@ import kkonrad.web.crawler.core.CrawlingOrchestrator;
 import kkonrad.web.crawler.core.Link;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-/**
- * Provides BFS like crawling through websites
- */
 public class SimpleCrawlingOrchestrator implements CrawlingOrchestrator {
 
     private final Set<Link> handled = ConcurrentHashMap.newKeySet();
